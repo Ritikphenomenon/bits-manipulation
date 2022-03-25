@@ -1,0 +1,38 @@
+class Solution {
+public:
+
+	// calculating number of 1's
+	
+    int bitscal(int n)
+    {
+        int cnt=0;
+        while(n)
+        {
+            n=n&n-1;
+            cnt++;
+        }
+        return cnt;
+    }
+    vector<int> sortByBits(vector<int>& arr) {
+        vector<int>h;
+        sort(arr.begin(),arr.end());
+		
+		//map to store 1's count in number and the number itself
+		
+        map<int,vector<int>>m;
+        for(auto x:arr)
+        {
+            int y = bitscal(x);
+            m[y].push_back(x);
+            
+        }
+        for(auto c:m)
+        {
+            for(auto i:c.second)
+                h.push_back(i);
+        }
+            
+        return h;
+            
+    }
+};
